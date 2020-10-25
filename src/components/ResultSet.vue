@@ -1,13 +1,10 @@
 <template>
   <div class="result-set">
-    This is the result set
-    <SingleResult v-for="result in resultList" v-bind:key="result" :title="result.title" :desc="result.desc"/>
+   
   </div>
 </template>
 
 <script>
-
-import SingleResult from './SingleResult.vue'
 
 export default {
   name: 'ResultSet',
@@ -16,7 +13,6 @@ export default {
   },
 
   components : {
-      SingleResult
   },
   
   data : function () {
@@ -26,9 +22,6 @@ export default {
   },
 
   methods : {
-    countResults: function () {
-      return this.resultList.length;  
-    }
   }
 
 }

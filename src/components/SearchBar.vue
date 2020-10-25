@@ -1,10 +1,16 @@
 <template>
   <div class="search-bar">
-    {{propdata}}
-    Search: <input type="text" v-model="datadata">
-    <button @click="changeText()">Change Text</button>
-    {{datadata}}
-    {{data}}
+    Search: <input type="text" v-model="bookTitle">
+    <button @click="getBook()">Change Text</button>
+    <!-- <div>
+      <ol>
+        <li v-for="book in bookResults" :key="book.id">
+          <img :src="'https://books.google.com/books/content?id=' + book.id + '&printsec=frontcover&img=1&zoom=6&edge=curl&source=gbs_api'">
+      
+        </li>
+      </ol>
+    </div> -->
+    {{bookResults}}
   </div>
 </template>
 
@@ -16,31 +22,25 @@ export default {
   },
   
   data : function () {
-    return{
-      datadata:"Selfdata",
-      data:{}
+    return {
+      bookTitle:'',
+      bookResults:[],
     }
   },
 
-  beforeMount(){
-    this.getName();
-  },
+  // beforeMount(){
+  //   this.getName();
+  // },
 
   methods : {
     changeText : function () {
       console.log(this.datadata) 
     },
-    async getName(){
-      const res = await fetch('https://www.googleapis.com/books/v1/volumes?q=search-terms&key=AIzaSyChtwl0PwpT6itmLCovi6slyQL52Vt-wD0');
+    async getBook(){
+      const res = await fetch('https://www.googleapis.com/books/v1/volumes?q=' + this.bookTitle);
       const data = await res.json();
-      this.data = data;
+      this.bookResults = data;
     }
-    // async apiHandler : function () {
-    //   const res = await fetch('https://www.googleapis.com/books/v1/volumes?q=search-terms&key=AIzaSyChtwl0PwpT6itmLCovi6slyQL52Vt-wD0');
-    //   const data = await res.json();
-    //   this.data = data;
-
-    // }
   }
 
 }
