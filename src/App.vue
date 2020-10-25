@@ -1,7 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <SearchBar/>
-  <ResultSet/>
+  <SearchBar propdata="Prop data"/>
+  <ResultSet :resultList="searchResults"/>
 </template>
 
 <script>
@@ -13,6 +13,19 @@ export default {
   components: {
     SearchBar,
     ResultSet, 
+  },
+  data: function () {
+    return {
+      searchResults: [
+        {title:"hello world" , desc: "first item on the list of results"},
+        {title:"hola mundo" , desc: "second item on the list of results"},
+      ]
+    }
+  },
+  methods: {
+    doSearch: function () {
+      console.log("Search to be implemented")
+    }
   }
 }
 </script>

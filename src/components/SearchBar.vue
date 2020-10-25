@@ -1,6 +1,9 @@
 <template>
   <div class="search-bar">
-    Search: <input type="text">
+    {{propdata}}
+    Search: <input type="text" v-model="datadata">
+    <button @click="ChangeText()">Change Text</button>
+    {{datadata}}
   </div>
 </template>
 
@@ -8,17 +11,19 @@
 export default {
   name: 'SearchBar',
   props: {
-    msg: String
+    propdata: String
   },
   
   data : function () {
     return{
-
+      datadata:"Selfdata"
     }
   },
 
   methods : {
-
+    ChangeText : function () {
+      console.log(this.datadata) 
+    }
   }
 
 }
@@ -26,5 +31,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  input {border-radius: 5px; border: 1px solid gray;}
 </style>
